@@ -1,0 +1,110 @@
+{% extends '_base.html' %}
+{% block meta_head %}
+    {{ block.super }}
+    <link href="/static/ciciot/css/details.css" rel="stylesheet">
+    <link href="/static/ciciot/css/head2.css" rel="stylesheet">
+{% endblock %}
+
+{% block head %}
+    <section id="head">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-1">
+                    <img src="/static/ciciot/static/journal/logo.jpg">
+                </div>
+                <div class="col-md-3">
+                    <div class="searchbox">
+                        <form action="">
+                            <input type="hidden" name="" value="全部搜索" id="select_value">
+                            <input type="text" name="" id="searchPlaceholder" class="import" placeholder="请输入查找内容">
+                            <input type="submit" value="搜   索" class="btn-search">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="login"><a href="#">登陆</a>|<a href="#">注册</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 offset-md-1">
+                    <div class="row">
+                        <h3>{{ article.title }}<h3>
+                    </div>
+                    <div class="row date">
+                        <div class="col-md-3 full">
+                            <p>2018-04-16 16:31</p>
+                        </div>
+                        <div class="col-md-5 full">
+                            <p>来源：{{ article.author.name }}</p>
+                        </div>
+                        <div class="col-md-2 full">
+                            <p class="end">浏览：3241</p>
+                        </div>
+                        <div class="col-md-2 full">
+                            <p class="end">点赞：1340</p>
+                        </div>
+                        <div class="col-md-12 full">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row text-intent full">
+                        {{ article.content | safe }}
+                    </div>
+                    <div class="row bottom">
+                        <div class="col-md-12 full">
+                            <hr>
+                        </div>
+                        <div class="col-md-3 offset-md-2 full" style="margin-top: 20px">
+                            <img src="/static/ciciot/static/details/share.png">
+                        </div>
+                        <div class="col-md-3 offset-md-2 full" style="margin-top: 20px">
+                            <img src="/static/ciciot/static/details/like.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 side">
+                    <div class="row right">
+                        <div class="col-md-12 side-img">
+                            <p><img src="/static/ciciot/static/details/fire1.png" alt=" " width="29px" height="40px">
+                                今日热点
+                            </p>
+                        </div>
+                        <ul>
+                            {% for article in hot_articles %}
+                                <li><a class="hot" href="{% url 'article:detail' article.id %}">{{ article.title }}</a></li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="row right">
+                        <div class="col-md-12 side-img">
+                            <p><img src="/static/ciciot/static/details/circle1.png" alt=" " width="29px" height="40px">
+                                精彩推荐
+                            </p>
+                        </div>
+                        {% for article in recomment_articles %}
+                        <div class="row advise">
+                            <div class="col-md-5 right-img">
+{#                                <p><img src="/static/ciciot/static/details/pic1.png" alt=" ">#}
+                                <p><img src="{{ article.preview_picture }}" alt=" ">
+                            </div>
+                            <div class="col-md-7 right-text">
+                                <a href="{% url 'article:detail' article.id %}" class="up">{{ article.title }}</a>
+                                <p class="down">{{ article.pub_date | date:"Y-m-d" }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

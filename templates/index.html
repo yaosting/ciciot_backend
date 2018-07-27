@@ -1,0 +1,392 @@
+{% extends '_base.html' %}
+
+{% block meta_head %}
+    {{ block.super }}
+    <link href="/static/ciciot/css/journal.css" rel="stylesheet">
+    <link href="/static/ciciot/css/head.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <section id="context">
+        <div class="title2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 offset-md-1">
+                        <div class="but"><a href=" #journals">物联网学报</a></div>
+                    </div>
+                    <div class="col-md-2 ">
+                        <div class="but"><a href="#skills">技术知识库</a></div>
+                    </div>
+                    <div class="col-md-2 ">
+                        <div class="but1"><a href="#studys">研究学习平台</a></div>
+                    </div>
+                    <div class="col-md-2 ">
+                        <div class="but"><a href="#uses">应用知识库</a></div>
+                    </div>
+                    <div class="col-md-2 ">
+                        <div class="but2"><a href="#cvtns">行业会议</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ad">
+        <div class="ad1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 first offset-md-1">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="/static/ciciot/static/journal/banner1.jpg"
+                                         alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="/static/ciciot/static/journal/banner1.jpg"
+                                         alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="/static/ciciot/static/journal/banner1.jpg"
+                                         alt="Third slide">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 second">
+                        {% for article in second_articles %}
+                            <div class="title">
+                                <a href="{% url 'article:detail' article.id %}"><img
+                                        src="/static/ciciot/static/journal/circle.png">{{ article.title }}<span>{{ article.pub_date | date:"Y-m-d" }}</span></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="journals">
+        <div class="journal1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 xuebao offset-md-1"><p>物联网学报</p>
+                        <img src="/static/ciciot/static/journal/xuebao.png">
+                    </div>
+                    <div class="col-md-10 photo offset-md-1">
+                        <div class="box">
+                            <p class="title1">电子刊</p><a href="#">
+                            <p class="but1">物联网技术与应用的新发展</p></a>
+                            <p class="title5">
+                                物联网是新一代信息技术的重要组成部分，也是信息化发展的重要标志。介绍了窄带物联网技术特点，围绕大数据、人工智能、移动互联网和云计算、说明了物联网与技术的结合所带来。
+                            <p>
+                            <p class="title3">2018-4-14</p>
+                            <a href="#" class="but2">阅读更多内容&nbsp></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10 back offset-md-1">
+                        <img src="/static/ciciot/static/journal/back1.png">
+                        <p class="head">往期回顾</p>
+                        <p class="footer">更多&nbsp></p>
+                    </div>
+                    <div class="row backed">
+                        {% for article in paper_articles %}
+                            {% if forloop.first %}
+                                <div class="col-md backd{{ forloop.counter }} offset-md-1 ">
+                            {% else %}
+                                <div class="col-md backd{{ forloop.counter }} ">
+                            {% endif %}
+                        <img src="{{ article.preview_picture }}" alt="">
+                        <div class="backd11">
+                            <a href="{% url 'article:detail' article.id %}">
+                                <p>【第{{ forloop.counter }}期】{{ article.title }}</p></a>
+                        </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section id="skills">
+        <div class="skill">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 xuebao offset-md-1"><p>技术知识库</p>
+                        <img src="/static/ciciot/static/journal/xuebao.png">
+                    </div>
+
+                    <div class="col-md offset-md-1"><img src="/static/ciciot/static/journal/stab1.png"/>
+                        <p>智慧服务终端</p></div>
+                    <div class="col-md offset-md-1"><img src="/static/ciciot/static/journal/stab22.png"/>
+                        <p>智慧网络服务</p></div>
+                    <div class="col-md offset-md-1"><img src="/static/ciciot/static/journal/stab3.png"/>
+                        <p>云计算</p></div>
+                    <div class="col-md offset-md-1"><img src="/static/ciciot/static/journal/stab4.png"/>
+                        <p>大数据</p></div>
+                    <div class="col-md offset-md-1"><img src="/static/ciciot/static/journal/stab5.png"/>
+                        <p>服务平台</p></div>
+                    <div class="col-md-1"></div>
+
+
+                    <section id="tech-lib">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-1">
+                                    <h4><img src="/static/ciciot/static/journal/circle.png"/>&nbsp传感器</h4>
+                                    <p>传感器传感器感器传感器传传感器传感器</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <h7><img
+                                            src="/static/ciciot/static/journal/circle.png">&nbsp移动互联网
+                                        </h4>
+                                        <p>传感器传感器传感器传感器传感器</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <h7><img
+                                            src="/static/ciciot/static/journal/circle.png">&nbsp4G
+                                        </h4>
+                                        <p>传感器传感器传感器传感器传感器</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <h7><img
+                                            src="/static/ciciot/static/journal/circle.png">&nbsp5G
+                                        </h4>
+                                        <p>传感器传感器传感器传感器传感器</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <h7><img
+                                            src="/static/ciciot/static/journal/circle.png">&nbspWIFI
+                                        </h4>
+                                        <p>传感器传感器传感器传感器传感器</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 offset-md-1">
+                                    <h4><img src="/static/ciciot/static/journal/circle.png"/>&nbspZigbee</h4>
+                                    <p>传感器传感器传感器传感器传感器</p>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <h4><img src="/static/ciciot/static/journal/circle.png"/>&nbsp802.11b</h4>
+                                    <p>传感器传感器传感器传感器传感器</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="studys">
+        <div class="study">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 xuebao offset-md-1"><p>研究学习平台</p>
+                        <img src="/static/ciciot/static/journal/xuebao.png">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="platform-libary">
+        <div class="container">
+            <div class="row">
+                <div class="  col-md-5 offset-md-1 ">
+                    <div class="row left-card">
+                        <div class="col-md-2">
+                            <p><img src="/static/ciciot/static/platform-libary/item1.png" alt=" " width="46px"
+                                    height="46px">
+                            </p>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>研究型学习平台</h4>
+                            <p>博士&nbsp &nbsp|&nbsp &nbsp研究生&nbsp &nbsp |&nbsp &nbsp 本科生 &nbsp &nbsp | &nbsp &nbsp
+                                工程师</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 ">
+                    <div class="row right-card">
+                        <div class="col-md-2">
+                            <p><img src="/static/ciciot/static/platform-libary/item2.png" alt=" " width="46px"
+                                    height="46px">
+                            </p>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>协同研究平台
+                            </h4>
+                            <p>高等院校&nbsp | &nbsp 地方政府 &nbsp | &nbsp 企业 | &nbsp 研究院所科研项目申报信息库 &nbsp | &nbsp 重点研究技术 &nbsp
+                                |
+                                &nbsp
+                                863军民融合 &nbsp | &nbsp 经信委 &nbsp | &nbsp 发改委
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="  col-md-5 offset-md-1 ">
+                    <div class="row left-card" style="height: 90px;">
+                        <div class="col-md-2">
+                            <p><img src="/static/ciciot/static/platform-libary/item3.png" alt=" " width="46px"
+                                    height="46px">
+                            </p>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>出版平台</h4>
+                            <p>邮电出版社 &nbsp | &nbsp 科研统计与期刊评价
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 ">
+                    <div class="row right-card" style="height: 90px;">
+                        <div class="col-md-2">
+                            <p><img src="/static/ciciot/static/platform-libary/item4.png" alt=" " width="46px"
+                                    height="46px">
+                            </p>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>国际出版
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="uses">
+        <div class="use">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 xuebao offset-md-1"><p>应用知识库</p>
+                        <img src="/static/ciciot/static/journal/xuebao.png">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="platform-libary">
+        <div class="container">
+            <div class="row">
+                <div class="  col-md-5 offset-md-1 ">
+                    <div class="row left-card">
+                        <div class="col-md-2">
+                            <p><img src="/static/ciciot/static/platform-libary/item5.png" alt=" " width="46px"
+                                    height="46px">
+                            </p>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>工业4.0
+                            </h4>
+                            <p>工业终端 &nbsp | &nbsp 工业互联网&nbsp |&nbsp 工业服务平台
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 ">
+                    <div class="row right-card">
+                        <div class="col-md-2">
+                            <p><img src="/static/ciciot/static/platform-libary/item6.png" alt=" " width="46px"
+                                    height="46px">
+                            </p>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>智慧系列
+                            </h4>
+                            <p>智慧城市 &nbsp | &nbsp 智慧农业 &nbsp | &nbsp 智慧制造 &nbsp | &nbsp 智慧节能环保 &nbsp | &nbsp 智慧交通 &nbsp
+                                |
+                                &nbsp 智慧能源 &nbsp| 智慧医疗 &nbsp|
+                                &nbsp智慧家居 &nbsp | &nbsp 智慧安防 &nbsp | &nbsp 智慧旅游 &nbsp| &nbsp 智慧国防
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="cvtns">
+        <div class="cvtn">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 xuebao offset-md-1"><p>会展</p>
+                        <img src="/static/ciciot/static/journal/xuebao.png">
+                    </div>
+                    <div class="row backed">
+                        {% for article in session_articles %}
+                            {% if forloop.first %}
+                                <div class="col-md backd1 offset-md-1">
+                            {% else %}
+                                {% if forloop.counter > 3 %}
+                                    <div class="col-md backd3">
+                                {% else %}
+                                    <div class="col-md backd{{ forloop.counter }}">
+                                {% endif %}
+                            {% endif %}
+                        <img src="{{  article.preview_picture }}">
+                        <div class="backd11">
+                            <a href="{% url 'article:detail' article.id %}"><p>{{ article.title }}</p></a>
+                        </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-1"></div>
+                        </div>
+
+
+                        </div>
+                    </div>
+                </div>
+    </section>
+    <section id="views">
+        <div class="view">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 xuebao offset-md-1"><p>大咖视点</p>
+                        <img src="/static/ciciot/static/journal/xuebao.png">
+                    </div>
+                    <div class="row backed">
+                        {% for article in boss_articles %}
+                            {% if forloop.first %}
+                                <div class="col-md backd1 offset-md-1">
+                            {% else %}
+                                {% if forloop.counter > 3 %}
+                                    <div class="col-md backd3">
+                                {% else %}
+                                    <div class="col-md backd{{ forloop.counter }}">
+                                {% endif %}
+                            {% endif %}
+                        <img src="{{  article.preview_picture }}" alt="">
+                        <div class="backd11">
+                            <a href="{% url 'article:detail' article.id %}"><p>{{ article.title }}</p></a>
+                        </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-1"></div>
+                        </div>
+
+
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+{% endblock %}
+
