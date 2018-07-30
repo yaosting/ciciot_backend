@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 
 from django.db import models
+from django.conf import settings
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -28,18 +29,18 @@ class Article(models.Model):
         bs_obj = BeautifulSoup(self.content, 'lxml')
         img_tag = bs_obj.img
         if not img_tag:
-            return '/static/ciciot/static/journal/backd2.png'
+            return settings.DEFAULT_PREVIEW_PICTURE
         return img_tag.attrs['src']
 
     @property
     def headline(self):
         return BeautifulSoup(self.content, 'lxml').p.text[:36]
 
+    class Meta:
+        ordering = ['-pub_date']
+
     def __str__(self):
         return '<Article {}>'.format(self.title)
-
-    class Meta:
-        ordering = ['pub_date']
 
 
 class Author(models.Model):
